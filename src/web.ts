@@ -6,7 +6,7 @@ export class SharedContentsWeb
   extends WebPlugin
   implements SharedContentsPlugin
 {
-  async echo(options: { value: string }): Promise<{ value: string }> {
+  async writeContents(options: { value: string, key: string, widget: string }): Promise<{ value: string }> {
     console.log('ECHO', options);
     return options;
   }

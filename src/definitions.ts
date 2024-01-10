@@ -1,3 +1,3 @@
 export interface SharedContentsPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  writeContents(options: { value: string, key?: string, widget?: string }): Promise<{ value: string }>;
 }

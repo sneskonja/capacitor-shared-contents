@@ -7,12 +7,13 @@ import Capacitor
  */
 @objc(SharedContentsPlugin)
 public class SharedContentsPlugin: CAPPlugin {
+
     private let implementation = SharedContents()
 
-    @objc func echo(_ call: CAPPluginCall) {
+    @objc func writeContents(_ call: CAPPluginCall) {
         let value = call.getString("value") ?? ""
         call.resolve([
-            "value": implementation.echo(value)
+            "value": implementation.writeContents(value)
         ])
     }
 }
