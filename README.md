@@ -14,6 +14,8 @@ npx cap sync
 <docgen-index>
 
 * [`writeContents(...)`](#writecontents)
+* [`removeContents(...)`](#removecontents)
+* [`updateWidgets(...)`](#updatewidgets)
 
 </docgen-index>
 
@@ -23,15 +25,37 @@ npx cap sync
 ### writeContents(...)
 
 ```typescript
-writeContents(options: { value: string; key?: string; widget?: string; }) => Promise<{ value: string; }>
+writeContents(options: { value: string; key?: string; }) => Promise<{ value: string; }>
 ```
 
-| Param         | Type                                                           |
-| ------------- | -------------------------------------------------------------- |
-| **`options`** | <code>{ value: string; key?: string; widget?: string; }</code> |
+| Param         | Type                                                          |
+| ------------- | ------------------------------------------------------------- |
+| **`options`** | <code>{ value: string; key?: string; }</code> |
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
 </docgen-api>
+
+### removeContents(...)
+```typescript
+removeContents(options: {key: string;}) => Promise<{key: string}>
+```
+
+| Param         | Type                                          |
+| ------------- |-----------------------------------------------|
+| **`options`** | <code>{ key: string; }</code> |
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+### updateWidgets(...)
+```typescript
+updateWidgets(options: {widgets:string[];}) => Promise<{widgets: string[]}>
+```
+
+| Param         | Type                                |
+| ------------- |-------------------------------------|
+| **`options`** | <code>{ widgets: string[]; }</code> |
+
+**Returns:** <code>Promise&lt;{ widgets: string[]; }&gt;</code>

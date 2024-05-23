@@ -16,4 +16,22 @@ public class SharedContentsPlugin: CAPPlugin {
             "value": implementation.writeContents(value)
         ])
     }
+
+    @objc func removeContents(_ call: CAPPluginCall) {
+        let value = call.getString("value") ?? ""
+        call.resolve([
+            "value": implementation.removeContents(value)
+        ])
+    }
+
+    @objc func updateWidgets(_ call: CAPPluginCall) {
+        guard let valueArray = call.getArray("value", String.self) else {
+                call.reject("Must provide an array of strings")
+                return
+            }
+
+            call.resolve([
+                "value": implementation.updateWidgets(valueArray)
+            ])
+    }
 }
