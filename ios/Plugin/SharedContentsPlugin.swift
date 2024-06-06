@@ -8,33 +8,35 @@ import Capacitor
 @objc(SharedContentsPlugin)
 public class SharedContentsPlugin: CAPPlugin {
 
-    //private let implementation = SharedContents()
+    private var implementation: SharedContents?
+
+    override public func load() {
+        self.initializeSharedContents()
+    }
+
+    private func initializeSharedContents() {
+        guard let appGroup = getConfigValue("appGroup") as? String else {
+            fatalError("Error: Could not get app group identifier from configuration")
+        }
+        self.implementation = SharedContents(groupIdentifier: appGroup)
+    }
 
     @objc func writeContents(_ call: CAPPluginCall) {
-//         let value = call.getString("value") ?? ""
-//         call.resolve([
-//             "value": implementation.writeContents(value)
-//         ])
-        call.unimplemented("Not implemented on iOS.")
+        let value = call.getString("value") ?? ""
+        let key = call.getString("key") ?? ""
+        call.resolve([
+            "value": implementation?.writeContents(key, value) as Any
+        ])
     }
 
     @objc func removeContents(_ call: CAPPluginCall) {
-//         let value = call.getString("value") ?? ""
-//         call.resolve([
-//             "value": implementation.removeContents(value)
-//         ])
-        call.unimplemented("Not implemented on iOS.")
+         let key = call.getString("key") ?? ""
+         call.resolve([
+            "value": implementation?.removeContents(key) as Any
+         ])
     }
 
     @objc func updateWidgets(_ call: CAPPluginCall) {
-//         guard let valueArray = call.getArray("value", String.self) else {
-//                 call.reject("Must provide an array of strings")
-//                 return
-//             }
-//
-//             call.resolve([
-//                 "value": implementation.updateWidgets(valueArray)
-//             ])
         call.unimplemented("Not implemented on iOS.")
     }
 }

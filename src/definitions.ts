@@ -3,3 +3,10 @@ export interface SharedContentsPlugin {
   removeContents(options: { key: string }): Promise<{ key: string }>;
   updateWidgets(options: {widgets: string[]}): Promise<{ widgets: string[] }>;
 }
+
+export interface PluginsConfig {
+    SharedContentsPlugin: {
+
+      appGroup: string;
+  }
+}
