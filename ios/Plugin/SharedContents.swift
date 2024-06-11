@@ -1,4 +1,5 @@
 import Foundation
+import WidgetKit
 
 @objc public class SharedContents: NSObject {
     
@@ -42,6 +43,16 @@ import Foundation
             try updatedData.write(to: archiveURL, options: .atomic)
         } catch {
             print("Error: Can't remove contents - \(error)")
+        }
+    }
+
+    @objc func updateWidgets(_ widgets: [String]) {
+        if #available(iOS 14.0, *) {
+            widgets.forEach { widget in
+                WidgetCenter.shared.reloadTimelines(ofKind: widget)
+            }
+        } else {
+            print("Error: Can't update widgets")
         }
     }
 }

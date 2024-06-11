@@ -37,6 +37,12 @@ public class SharedContentsPlugin: CAPPlugin {
     }
 
     @objc func updateWidgets(_ call: CAPPluginCall) {
-        call.unimplemented("Not implemented on iOS.")
+        guard let widgetKinds = call.getArray("widgets", String.self) else {
+            call.reject("Widgets array is required")
+            return
+        }
+        call.resolve([
+            "value": implementation?.updateWidgets(widgetKinds) as Any
+         ])
     }
 }
